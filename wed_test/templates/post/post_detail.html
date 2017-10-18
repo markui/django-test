@@ -5,4 +5,8 @@
     <a href="#"><img src="{{ post.photo.url }}"></a>
     <p>Content :{{ post.content }}</p>
     <p>Created Date: {{ post.created_date }}</p>
+    <form action="{% url 'post:delete' pk=post.pk %}" method="POST">
+            {% csrf_token %}
+            <button>삭제하기</button>
+    </form>
 {% endblock %}

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import PostForm
 from .models import Post
@@ -32,3 +33,11 @@ def post_create(request):
         'form': form
     }
     return render(request, 'post/post_create.html', context)
+
+
+def post_delete(request, pk):
+    if request.method == "POST":
+        post = get_object_or_404(Post, pk=pk)
+        post.delete()
+
+    return redirect('post:list')
